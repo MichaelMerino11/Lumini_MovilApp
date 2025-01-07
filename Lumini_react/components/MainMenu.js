@@ -46,7 +46,18 @@ const MainMenu = ({ navigation }) => {
         >
           <Text style={styles.menuText}>Análisis del Sueño</Text>
         </TouchableOpacity>
-        {/* Agrega más botones según sea necesario */}
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.navigate("PsychologistTalks")}
+        >
+          <Text style={styles.menuText}>Charlas de Psicólogos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuButton}
+          onPress={() => navigation.navigate("RelaxingSounds")}
+        >
+          <Text style={styles.menuText}>Sonidos Relajantes</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

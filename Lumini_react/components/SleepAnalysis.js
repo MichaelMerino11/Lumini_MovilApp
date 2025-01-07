@@ -1,37 +1,80 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { LineChart } from "react-native-chart-kit";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { LineChart, BarChart } from "react-native-chart-kit";
 
 const SleepAnalysis = () => {
-  const data = {
-    labels: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
-    datasets: [{ data: [6, 7, 5.5, 8, 6.5, 7.5, 6], strokeWidth: 2 }],
+  const sleepData = [6, 7, 5.5, 8, 7.5, 6.5, 7];
+  const sleepLabels = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+
+  const barData = {
+    labels: ["Ligero", "Profundo", "REM"],
+    datasets: [{ data: [4, 3, 2] }],
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Análisis del Sueño</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.subtitle}>Horas de sueño esta semana</Text>
       <LineChart
-        data={data}
-        width={300}
-        height={220}
-        chartConfig={{
-          backgroundGradientFrom: "#ffffff",
-          backgroundGradientTo: "#ffffff",
-          decimalPlaces: 1,
-          color: (opacity = 1) => `rgba(0, 122, 255, ${opacity})`,
+        data={{
+          labels: sleepLabels,
+          datasets: [{ data: sleepData }],
         }}
-        bezier
+        width={350}
+        height={220}
+        chartConfig={chartConfig}
         style={styles.chart}
       />
-    </View>
+      <Text style={styles.subtitle}>Promedio por tipo de sueño</Text>
+      <BarChart
+        data={barData}
+        width={350}
+        height={220}
+        chartConfig={chartConfig}
+        style={styles.chart}
+      />
+      <Text style={styles.details}>
+        Esta semana tu promedio de sueño fue de {(
+          sleepData.reduce((a, b) => a + b) / sleepData.length
+        ).toFixed(1)} horas por noche. ¡Sigue manteniendo un buen descanso!
+      </Text>
+    </ScrollView>
   );
 };
 
+const chartConfig = {
+  backgroundColor: "#ffffff",
+  backgroundGradientFrom: "#f0f8ff",
+  backgroundGradientTo: "#a7c7e7",
+  color: (opacity = 1) => `rgba(34, 73, 138, ${opacity})`,
+  labelColor: (opacity = 1) => `rgba(34, 73, 138, ${opacity})`,
+};
+
 const styles = StyleSheet.create({
-  container: { padding: 20, alignItems: "center" },
-  title: { fontSize: 20, fontWeight: "bold", marginBottom: 10 },
-  chart: { marginVertical: 8, borderRadius: 10 },
+  container: {
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#f0f8ff",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  chart: {
+    borderRadius: 10,
+    marginVertical: 10,
+  },
+  details: {
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 20,
+    color: "#555",
+  },
 });
 
 export default SleepAnalysis;

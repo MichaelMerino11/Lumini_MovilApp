@@ -5,6 +5,8 @@ import MainMenu from "./components/MainMenu";
 import EmotionTracker from "./components/EmotionTracker";
 import SleepAnalysis from "./components/SleepAnalysis";
 import EmotionDetail from "./screens/EmotionDetail";
+import PsychologistTalks from "./screens/PsychologistTalks";
+import RelaxingSounds from "./screens/RelaxingSounds";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +30,8 @@ export default function App() {
           component={SleepAnalysis}
           options={{ title: "Análisis del Sueño" }}
         />
+        <Stack.Screen name="PsychologistTalks" component={PsychologistTalks} />
+        <Stack.Screen name="RelaxingSounds" component={RelaxingSounds} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -19,11 +19,30 @@ const descriptions = {
   Triste: "Te sientes triste, recuerda que cada día es una oportunidad para mejorar.",
 };
 
+const emotionColors = {
+  Alegre: "#FFEB3B",
+  Avergonzado: "#FF7043",
+  Deprimido: "#90CAF9",
+  Divertido: "#FF9800",
+  Enamorado: "#F06292",
+  Encantado: "#9575CD",
+  Enojado: "#F44336",
+  Hambriento: "#FFC107",
+  Indecente: "#BDBDBD",
+  Maravillado: "#00BCD4",
+  Normal: "#8BC34A",
+  Pensativo: "#4CAF50",
+  Sorprendido: "#FFC400",
+  Tranquilo: "#009688",
+  Triste: "#2196F3",
+};
+
 const EmotionDetail = ({ route, navigation }) => {
   const { emotion } = route.params;
+  const backgroundColor = emotionColors[emotion.name] || "#FFFFFF";
 
   return (
-    <View style={[styles.container, { backgroundColor: "#f4f8fb" }]}>
+    <View style={[styles.container, { backgroundColor }]}>
       <Image source={emotion.image} style={styles.image} />
       <Text style={styles.title}>{emotion.name}</Text>
       <Text style={styles.description}>{descriptions[emotion.name]}</Text>
