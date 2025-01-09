@@ -77,7 +77,7 @@ const RelaxingSounds = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Sonidos Relajantes</Text>
+      <Text style={styles.header}>Sonidos Relajanteeeees</Text>
       <FlatList
         data={sounds}
         renderItem={renderItem}
